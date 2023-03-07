@@ -17,7 +17,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainLayout title="Dashboard"><p>Dashboard</p></MainLayout>
+      <MainLayout title="Businesses"><p>Businesses</p></MainLayout>
     </>
   )
 }

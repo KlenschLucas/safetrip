@@ -2,9 +2,8 @@ import {DataGrid} from "@mui/x-data-grid";
 import * as React from "react";
 import {GridRowsProp} from "@mui/x-data-grid/models/gridRows";
 import {GridColDef} from "@mui/x-data-grid/models/colDef/gridColDef";
-import CustomPagination from "@/Components/Common/DataTablePagination";
-import {DataTableToolbar} from "@/Components/Common/DataTableToolbar";
-
+import CustomPagination from "@/Components/Common/DataTable/DataTablePagination";
+import {DataTableToolbar} from "@/Components/Common/DataTable/DataTableToolbar";
 
 interface DataTableProps {
   loading: boolean;
@@ -33,7 +32,6 @@ export default function DataTable(props: DataTableProps) {
                   pagination: {paginationModel: {pageSize: 5},},
                 }}
       />
-
     </div>
   )
 }

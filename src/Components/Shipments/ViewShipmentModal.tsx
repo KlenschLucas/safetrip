@@ -1,31 +1,35 @@
 import {GridColDef} from "@mui/x-data-grid";
-import {Button} from "@mui/material";
+import {Button, Dialog, DialogTitle, Typography} from "@mui/material";
 import * as React from "react";
 import {ShipmentStatusChip} from "@/Components/Shipments/ShipmentStatusChip";
+import {Shipment} from "@/Models/Shipment";
+import {DialogBody} from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 
+export interface ViewShipmentModalProps {
+  open: boolean;
+  shipment: Shipment | null;
+  close: () => void;
+}
 
-const columns: GridColDef[] = [
-  {field: 'shipmentName', headerName: 'Shipment Name'},
-  {field: 'clientName', headerName: 'Client Name'},
-  {field: 'entryDate', headerName: 'Entry Date'},
-  {field: 'shipmentDate', headerName: 'Shipment Date'},
-  {
-    field: 'status', headerName: 'Status', renderCell: ({row}) => {
-      return <ShipmentStatusChip status={row.status}/>;
-    }
-  },
-  {
-    field: 'value', headerName: 'value', width: 150, renderCell: ({row}) => {
-      console.log(row)
-      const val = row.value.toFixed(2).toString().split("");
-      let str = "$ ";
-      //  todo: come back and fix
-      return str + val.join("");
-    }
-  },
-  {
-    field: 'action', headerName: '', width: 150, renderCell: params => (
-      <Button>View</Button>
-    )
-  },
-];
+export function ViewShipmentModal(props: ViewShipmentModalProps) {
+  const {open, shipment, close} = props;
+  const handleClose = () => {
+    props.close();
+  };
+
+  if (shipment) {
+
+    return (
+      <Dialog onClose={handleClose} open={open}>
+        <DialogTitle>{shipment.shipmentName}</DialogTitle>
+        <Typography variant="h5">{shipment.clientName}</Typography>
+        <Typography variant="h5">{shipment.entryDate}</Typography>
+        <Typography variant="h5">{shipment.shipmentDate}</Typography>
+        <Typography variant="h5">{shipment.status}</Typography>
+        <Typography variant="h5">{shipment.value}</Typography>
+      </Dialog>
+    );
+  }
+  // TODO: remove this
+  return <></>
+}

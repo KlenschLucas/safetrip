@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
 import DirectionsBoatOutlinedIcon from '@mui/icons-material/DirectionsBoatOutlined';
+import {useRouter} from "next/router";
 
 const drawerWidth = 240;
 
@@ -47,8 +48,8 @@ const sidebar: Items[] = [{
   },
   {
     icon: <PeopleAltOutlinedIcon/>,
-    text: "Business",
-    link: "/Business"
+    text: "Businesses",
+    link: "/Businesses"
   },
   {
     icon: <CampaignOutlinedIcon/>,
@@ -57,6 +58,7 @@ const sidebar: Items[] = [{
   },
 ]
 export default function SideNavbar() {
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -68,7 +70,7 @@ export default function SideNavbar() {
       <Toolbar/>
       <List>
         {sidebar.map((item, index) => (
-          <ListItem key={item.text} disablePadding>
+          <ListItem key={item.text} disablePadding onClick={() => router.push(item.link)}>
             <ListItemButton>
               <ListItemIcon>
                 {item.icon}
