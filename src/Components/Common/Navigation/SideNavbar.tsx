@@ -21,6 +21,8 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
 import DirectionsBoatOutlinedIcon from '@mui/icons-material/DirectionsBoatOutlined';
 import {useRouter} from "next/router";
+import logo from '@/data/Logo.png';
+import Image from "next/image";
 
 const drawerWidth = 240;
 
@@ -59,7 +61,13 @@ const sidebar: Items[] = [{
 ]
 export default function SideNavbar() {
   const router = useRouter();
+  const [selectedLink, setSelectedLink] = React.useState("/");
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const selectLink = (link: string) => {
+    router.push(link);
+    setSelectedLink(link);
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -67,11 +75,11 @@ export default function SideNavbar() {
 
   const drawer = (
     <div>
-      <Toolbar/>
+      <Toolbar><Image src={logo} alt={""} width={240}/></Toolbar>
       <List>
         {sidebar.map((item, index) => (
-          <ListItem key={item.text} disablePadding onClick={() => router.push(item.link)}>
-            <ListItemButton>
+          <ListItem key={item.text} disablePadding onClick={() => selectLink(item.link)}>
+            <ListItemButton className={selectedLink === item.link ? 'active-link' : 'link'}>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
@@ -88,6 +96,7 @@ export default function SideNavbar() {
     <>
       <Drawer
         variant="temporary"
+        color="primary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
@@ -96,15 +105,18 @@ export default function SideNavbar() {
         sx={{
           display: {xs: 'block', sm: 'none'},
           '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+          padding: 1
         }}
       >
         {drawer}
       </Drawer>
       <Drawer
         variant="permanent"
+        color='primary'
         sx={{
           display: {xs: 'none', sm: 'block'},
           '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
+          padding: 1
         }}
         open
       >

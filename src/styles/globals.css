@@ -1,0 +1,18 @@
+.MuiTablePagination-displayedRows {
+    display: none;
+    width: 0;
+}
+
+.MuiToolbar-root {
+    padding: 0;
+}
+
+.MuiTablePagination-spacer {
+    display: none;
+    width: 0;
+}
+
+.active-link {
+    background: linear-gradient(270deg, #2D4A9A 24.09%, rgba(45, 74, 154, 0.26) 111.82%);
+    border-radius: 40px;
+}

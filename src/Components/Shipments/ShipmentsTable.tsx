@@ -29,11 +29,18 @@ export function ShipmentsTable(props: ShipmentsTableProps) {
     },
     {
       field: 'value', headerName: 'value', width: 150, renderCell: ({row}) => {
-        console.log(row)
-        const val = row.value.toFixed(2).toString().split("");
-        let str = "$ ";
-        //  todo: come back and fix
-        return str + val.join("");
+        const strVal = row.value.toFixed(2).toString();
+        const dollors = strVal.split(".")[0];
+        const cents = strVal.split(".")[1];
+        let str = "";
+        for (let i = 0; i < dollors.length; i++) {
+          if (i !== 0 && i % 3 === 0) {
+            str = " " + str;
+          }
+          str = dollors[dollors.length - i - 1] + str;
+        }
+        console.log(dollors, str, cents)
+        return `$ ${str}.${cents}`;
       }
     },
     {

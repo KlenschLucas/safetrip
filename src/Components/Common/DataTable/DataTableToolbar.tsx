@@ -12,11 +12,11 @@ export function DataTableToolbar(props: any) {
   return (
     <GridToolbarContainer>
       <TextField
-        variant="standard"
+        variant="outlined"
         value={filterValue || ''}
         onChange={handleFilterChange}
-        placeholder="Filter..."
-        style={{width: '100%'}}
+        placeholder="Search"
+        style={{width: '30%'}}
       />
     </GridToolbarContainer>
   );

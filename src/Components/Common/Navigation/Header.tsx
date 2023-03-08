@@ -54,12 +54,13 @@ export default function Header(props: Props) {
         width: {sm: `calc(100% - ${drawerWidth}px)`},
         ml: {sm: `${drawerWidth}px`},
       }}
+      color="transparent" elevation={0}
     >
       <Toolbar>
         <Typography variant="h4" noWrap component="div" color="black">
           {props.title}
         </Typography>
-        <Box sx={{flexGrow: 1, textAlign: "left"}} >
+        <Box sx={{flexGrow: 1, textAlign: "left"}}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
               <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
